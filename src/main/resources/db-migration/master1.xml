@@ -1,0 +1,98 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="Tetiana (generated)" id="1475930563011-1" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="classes_types">
+            <column autoIncrement="true" name="ct_id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="ct_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Tetiana (generated)" id="1475930563011-2" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="education">
+            <column autoIncrement="true" name="ed_id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="ed_student" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ed_tutor" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ed_subject" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ed_class_type" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ed_mark" type="INT"/>
+            <column name="ed_date" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Tetiana (generated)" id="1475930563011-3" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="students">
+            <column autoIncrement="true" name="st_id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="st_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Tetiana (generated)" id="1475930563011-4" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="subjects">
+            <column autoIncrement="true" name="sb_id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="sb_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Tetiana (generated)" id="1475930563011-5" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="tutors">
+            <column autoIncrement="true" name="tt_id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="tt_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Tetiana (generated)" id="1475930563011-6" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="ed_class_type" tableName="education">
+            <column name="ed_class_type"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Tetiana (generated)" id="1475930563011-7" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="ed_student" tableName="education">
+            <column name="ed_student"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Tetiana (generated)" id="1475930563011-8" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="ed_subject" tableName="education">
+            <column name="ed_subject"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Tetiana (generated)" id="1475930563011-9" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="ed_tutor" tableName="education">
+            <column name="ed_tutor"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Tetiana (generated)" id="1475930563011-10" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="ed_tutor" baseTableName="education" constraintName="education_ibfk_1" deferrable="true" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="tt_id" referencedTableName="tutors"/>
+    </changeSet>
+    <changeSet author="Tetiana (generated)" id="1475930563011-11" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="ed_student" baseTableName="education" constraintName="education_ibfk_2" deferrable="true" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="st_id" referencedTableName="students"/>
+    </changeSet>
+    <changeSet author="Tetiana (generated)" id="1475930563011-12" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="ed_subject" baseTableName="education" constraintName="education_ibfk_3" deferrable="true" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="sb_id" referencedTableName="subjects"/>
+    </changeSet>
+    <changeSet author="Tetiana (generated)" id="1475930563011-13" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="ed_class_type" baseTableName="education" constraintName="education_ibfk_4" deferrable="true" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="ct_id" referencedTableName="classes_types"/>
+    </changeSet>
+</databaseChangeLog>
